@@ -241,6 +241,14 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           git clone --quiet --depth=1 https://github.com/aricloverEXTRA/YTABConfig.git
+
+      - name: Patch Tweak Include Paths
+        run: |
+          echo "Patching YouTimeStamp..."
+          sed -i '' 's|../YouTubeHeader/|YouTubeHeader/|g' ${{ github.workspace }}/YouTimeStamp/Tweak.x
+          
+          echo "Patching YTABConfig..."
+          sed -i '' 's|../YouTubeHeader/|YouTubeHeader/|g' ${{ github.workspace }}/YTABConfig/Tweak.x
       
       - name: Build YouPiP
         if: ${{ inputs.enable_youpip }}
