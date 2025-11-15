@@ -202,6 +202,12 @@ jobs:
           ref: e5e4ab56e62048a7d7c3c5cb2740bc2e7a1d87d1
           path: ${{ github.workspace }}/YTUHD
 
+      - name: Patch YTUHD Tweak.xm
+        if: ${{ inputs.enable_ytuhd }}
+        run: |
+          echo "Adding Foundation import to YTUHD/Tweak.xm"
+          sed -i '' '1s;^;#import <Foundation/Foundation.h>\n;' ${{ github.workspace }}/YTUHD/Tweak.xm
+
       - name: Clone Return-YouTube-Dislikes
         if: ${{ inputs.enable_ryd }}
         run: |
